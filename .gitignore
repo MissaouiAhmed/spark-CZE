@@ -22,3 +22,4 @@ shared_resources/parquet_files/*
 shared_resources/cybersecurity-assembly-1.0.0.jar
 data/out.csv
 .bsp/sbt.json
+generic-assembly-1.0.0.jar

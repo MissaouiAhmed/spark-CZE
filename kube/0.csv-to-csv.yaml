@@ -1,8 +1,8 @@
-apiVersion: "sparkoperator.hpe.com/v1beta2"
+apiVersion: "sparkoperator.hpe.com/v1beta2" # for 52 apiVersion: "sparkoperator.k8s.io/v1beta2"
 kind: SparkApplication
 metadata:
   name: spark-csv-to-csv
-  namespace: sampletenant # modify here
+  namespace: mlops-on-k8s # modify here
 spec:
   #sparkConf:
     # Note: If you are executing the application as a K8 user that MapR can verify,
@@ -12,17 +12,17 @@ spec:
     #       it will be auto-generated with the pattern "maprfs:///apps/spark/<namespace>"
     #spark.eventLog.dir: "maprfs:///apps/spark/sampletenant"
   type: Java
-  sparkVersion: 2.4.4
+  sparkVersion: 2.4.4 # for 5.2 2.4.5
   mode: cluster
-  image: gcr.io/mapr-252711/spark-2.4.4:202009090453C
+  image: gcr.io/mapr-252711/spark-2.4.4:202009090453C # for 5.2 image: gcr.io/mapr-252711/spark-2.4.5:202010301117C
   imagePullPolicy: Always
   mainClass: com.cze.catharina.CsvToCsv # modify here
-  mainApplicationFile: "maprfs:///path/to/generic-assembly-1.0.0.jar" # modify here
+  mainApplicationFile: "maprfs:///exthcp/tenant-36/fsmount/generic-assembly-1.0.0.jar" # modify here
   restartPolicy:
     type: Never
   arguments:
-  - maprfs:///data/in.csv # modify here 
-  - maprfs:///data/out.csv # modify here    
+  - maprfs:///exthcp/tenant-36/fsmount/in.csv # modify here 
+  - maprfs:///exthcp/tenant-36/fsmount/out.csv # modify here    
   imagePullSecrets:
   - imagepull
   driver:
@@ -30,7 +30,7 @@ spec:
     coreLimit: "1000m"
     memory: "512m"
     labels:
-      version: 2.4.4
+      version: 2.4.4 # for 5.2 2.4.5
     # Note: You do not need to specify a serviceAccount
     #       it will be auto-generated referencing the pre-existing "hpe-<namespace>"
     #serviceAccount: hpe-sampletenant
