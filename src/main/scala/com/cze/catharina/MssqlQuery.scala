@@ -1,7 +1,7 @@
-package com.hpe.catharina
+package com.cze.catharina
 
 //import org.apache.spark.sql._
-import com.hpe.util.ConfigManager
+import com.cze.util.ConfigManager
 import org.apache.log4j.{Level, LogManager, Logger}
 import org.apache.spark.sql.{DataFrame, Row, SQLContext, SaveMode, SparkSession}
 
