@@ -1,0 +1,34 @@
+apiVersion: "sparkoperator.k8s.io/v1beta2"
+kind: SparkApplication
+metadata:
+  name: simple-read-parquet
+  namespace: localkdf # example - externalcspace
+spec:
+  sparkConf:
+    spark.mapr.user.secret: mapr-user-secret-1298664800 # example - mapr-user-secret-123456
+    spark.eventLog.enabled: "true"
+    spark.eventLog.dir: "maprfs:///apps/spark/localkdf" # example - maprfs:///apps/spark/externalcspace
+  type: Scala
+  sparkVersion: 2.4.4
+  mode: cluster
+  image: gcr.io/mapr-hpe/spark-2.4.4:201912180140
+  imagePullPolicy: Always
+  mainClass: com.hpe.examples.ReadParquetFile # modify our class
+  mainApplicationFile: "maprfs:///apps/cybersecurity/cybersecurity-assembly-1.0.0.jar" # add our jar
+  restartPolicy:
+    type: Never
+  imagePullSecrets:
+  - mapr-imagepull-secrets  
+  driver:
+    cores: 1
+    coreLimit: "1000m"
+    memory: "512m"
+    labels:
+      version: 2.4.4
+    serviceAccount: mapr-localkdf-cspace-sa # example - mapr-mycspace-cspace-sa
+  executor:
+    cores: 1
+    instances: 2
+    memory: "512m"
+    labels:
+      version: 2.4.4

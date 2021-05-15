@@ -1,0 +1,23 @@
+# Created by .ignore support plugin (hsz.mobi)
+### JetBrains template
+# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and Webstorm
+# User-specific stuff:
+.idea
+null
+
+# sbt specific
+.cache
+.history
+.lib/
+dist/*
+target/
+lib_managed/
+src_managed/
+project/boot/
+project/plugins/project/
+# shared_resources/data/cyber_data/*
+shared_resources/data/nlp_data/*
+shared_resources/es_checkpoint/*
+shared_resources/parquet_files/*
+shared_resources/cybersecurity-assembly-1.0.0.jar
+data/out.csv
