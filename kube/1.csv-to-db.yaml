@@ -1,8 +1,8 @@
 apiVersion: "sparkoperator.hpe.com/v1beta2"
 kind: SparkApplication
 metadata:
-  name: spark-wordcount-secure
-  namespace: sampletenant
+  name: spark-csv-to-db
+  namespace: sampletenant # modify here
 spec:
   #sparkConf:
     # Note: If you are executing the application as a K8 user that MapR can verify,
@@ -16,12 +16,17 @@ spec:
   mode: cluster
   image: gcr.io/mapr-252711/spark-2.4.4:202009090453C
   imagePullPolicy: Always
-  mainClass: org.apache.spark.examples.JavaWordCount
-  mainApplicationFile: "local:///opt/mapr/spark/spark-2.4.4/examples/jars/spark-examples_2.11-2.4.4.6-mapr-630.jar"
+  mainClass: com.cze.catharina.MssqlLoad # modify here
+  mainApplicationFile: "maprfs:///path/to/generic-assembly-1.0.0.jar" # modify here
   restartPolicy:
     type: Never
   arguments:
-  - maprfs:///tmp/input.txt
+  - maprfs:///data/in.csv # in_path
+  - maprfs:///data/out.csv # modify here
+  - jdbc:sqlserver://localhost:1433;databaseName=master # connection String
+  - dbo.sample_table # table
+  - sa # user
+  - Admin123 # password
   imagePullSecrets:
   - imagepull
   driver:

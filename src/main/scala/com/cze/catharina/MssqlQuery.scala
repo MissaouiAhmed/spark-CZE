@@ -31,12 +31,12 @@ object MssqlQuery {
     import spark.implicits._
 
     // constants
-    val in_path = s"data/in.csv" // args(0) - maprfs:///exthcp/tenant-54/fsmount/hpecp-agent.log 
-    val out_path = s"data/out.csv" // args(0) - maprfs:///exthcp/tenant-54/fsmount/hpecp-agent.log 
-    val db_url = "jdbc:sqlserver://localhost:1433;databaseName=master" // args(1)
-    val table = "dbo.sample_table"
-    val user = "sa"
-    val password = "Admin123"
+    val in_path = args(0) // test: s"data/in.csv"
+    val out_path = args(1) // test: s"data/out.csv"
+    val db_url = args(2) // test: "jdbc:sqlserver://localhost:1433;databaseName=master"
+    val table = args(3) // test: "dbo.sample_table"
+    val user = args(4) // test: "sa"
+    val password = args(5) // test: "Admin123"
 
   	val jdbcDF = spark.read.format("jdbc")
   		.option("url",  db_url)

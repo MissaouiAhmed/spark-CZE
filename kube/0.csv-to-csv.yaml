@@ -1,8 +1,8 @@
 apiVersion: "sparkoperator.hpe.com/v1beta2"
 kind: SparkApplication
 metadata:
-  name: spark-etl-cze
-  namespace: sampletenant
+  name: spark-csv-to-csv
+  namespace: sampletenant # modify here
 spec:
   #sparkConf:
     # Note: If you are executing the application as a K8 user that MapR can verify,
@@ -16,12 +16,12 @@ spec:
   mode: cluster
   image: gcr.io/mapr-252711/spark-2.4.4:202009090453C
   imagePullPolicy: Always
-  mainClass: com.hpe.examples.CsvToCsv # modify here
-  mainApplicationFile: "maprfs:///apps/cybersecurity/generic-assembly-1.0.0.jar" # modify here
+  mainClass: com.cze.catharina.CsvToCsv # modify here
+  mainApplicationFile: "maprfs:///path/to/generic-assembly-1.0.0.jar" # modify here
   restartPolicy:
     type: Never
   arguments:
-  - maprfs:///dat/in.csv # modify here 
+  - maprfs:///data/in.csv # modify here 
   - maprfs:///data/out.csv # modify here    
   imagePullSecrets:
   - imagepull

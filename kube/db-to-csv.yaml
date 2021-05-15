@@ -1,33 +1,46 @@
 apiVersion: "sparkoperator.k8s.io/v1beta2"
 kind: SparkApplication
 metadata:
-  name: simple-read-parquet
-  namespace: localkdf # example - externalcspace
+  name: spark-db-to-csv
+  namespace: sampletenant # modify here
 spec:
-  sparkConf:
-    spark.mapr.user.secret: mapr-user-secret-1298664800 # example - mapr-user-secret-123456
-    spark.eventLog.enabled: "true"
-    spark.eventLog.dir: "maprfs:///apps/spark/localkdf" # example - maprfs:///apps/spark/externalcspace
-  type: Scala
+  #sparkConf:
+    # Note: If you are executing the application as a K8 user that MapR can verify,
+    #       you do not need to specify a spark.mapr.user.secret
+    #spark.mapr.user.secret: spark-user-secret
+    # Note: You do not need to specify a spark.eventLog.dir
+    #       it will be auto-generated with the pattern "maprfs:///apps/spark/<namespace>"
+    #spark.eventLog.dir: "maprfs:///apps/spark/sampletenant"
+  type: Java
   sparkVersion: 2.4.4
   mode: cluster
-  image: gcr.io/mapr-hpe/spark-2.4.4:201912180140
+  image: gcr.io/mapr-252711/spark-2.4.4:202009090453C
   imagePullPolicy: Always
-  mainClass: com.hpe.examples.ReadParquetFile # modify our class
-  mainApplicationFile: "maprfs:///apps/cybersecurity/cybersecurity-assembly-1.0.0.jar" # add our jar
+  mainClass: com.cze.catharina.MssqlQuery # modify here
+  mainApplicationFile: "maprfs:///path/to/generic-assembly-1.0.0.jar" # modify here
   restartPolicy:
     type: Never
+  arguments:
+  - maprfs:///data/in.csv # in_path
+  - maprfs:///data/out.csv # modify here
+  - jdbc:sqlserver://localhost:1433;databaseName=master # connection String
+  - dbo.sample_table # table
+  - sa # user
+  - Admin123 # password
   imagePullSecrets:
-  - mapr-imagepull-secrets  
+  - imagepull
   driver:
     cores: 1
     coreLimit: "1000m"
     memory: "512m"
     labels:
       version: 2.4.4
-    serviceAccount: mapr-localkdf-cspace-sa # example - mapr-mycspace-cspace-sa
+    # Note: You do not need to specify a serviceAccount
+    #       it will be auto-generated referencing the pre-existing "hpe-<namespace>"
+    #serviceAccount: hpe-sampletenant
   executor:
     cores: 1
+    coreLimit: "1000m"
     instances: 2
     memory: "512m"
     labels:
