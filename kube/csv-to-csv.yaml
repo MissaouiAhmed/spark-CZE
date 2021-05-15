@@ -1,0 +1,43 @@
+apiVersion: "sparkoperator.hpe.com/v1beta2"
+kind: SparkApplication
+metadata:
+  name: spark-etl-cze
+  namespace: sampletenant
+spec:
+  #sparkConf:
+    # Note: If you are executing the application as a K8 user that MapR can verify,
+    #       you do not need to specify a spark.mapr.user.secret
+    #spark.mapr.user.secret: spark-user-secret
+    # Note: You do not need to specify a spark.eventLog.dir
+    #       it will be auto-generated with the pattern "maprfs:///apps/spark/<namespace>"
+    #spark.eventLog.dir: "maprfs:///apps/spark/sampletenant"
+  type: Java
+  sparkVersion: 2.4.4
+  mode: cluster
+  image: gcr.io/mapr-252711/spark-2.4.4:202009090453C
+  imagePullPolicy: Always
+  mainClass: com.hpe.examples.CsvToCsv # modify here
+  mainApplicationFile: "maprfs:///apps/cybersecurity/generic-assembly-1.0.0.jar" # modify here
+  restartPolicy:
+    type: Never
+  arguments:
+  - maprfs:///dat/in.csv # modify here 
+  - maprfs:///data/out.csv # modify here    
+  imagePullSecrets:
+  - imagepull
+  driver:
+    cores: 1
+    coreLimit: "1000m"
+    memory: "512m"
+    labels:
+      version: 2.4.4
+    # Note: You do not need to specify a serviceAccount
+    #       it will be auto-generated referencing the pre-existing "hpe-<namespace>"
+    #serviceAccount: hpe-sampletenant
+  executor:
+    cores: 1
+    coreLimit: "1000m"
+    instances: 2
+    memory: "512m"
+    labels:
+      version: 2.4.4
