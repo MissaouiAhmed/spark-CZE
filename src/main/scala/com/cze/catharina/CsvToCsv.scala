@@ -31,8 +31,8 @@ object CsvToCsv {
     import spark.implicits._
 
     // constants
-    val in_path = s"data/in.csv" // args(0) - maprfs:///exthcp/tenant-54/fsmount/hpecp-agent.log 
-    val out_path = s"data/out.csv" // args(0) - maprfs:///exthcp/tenant-54/fsmount/hpecp-agent.log
+    val in_path = args(0) // s"data/in.csv" // maprfs:///exthcp/tenant-54/fsmount/hpecp-agent.log 
+    val out_path = args(1) // s"data/out.csv" //  - maprfs:///exthcp/tenant-54/fsmount/hpecp-agent.log
 
     val sampleDF = spark.read.format("csv")
       .option("header", "true")

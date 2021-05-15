@@ -30,15 +30,13 @@ object MssqlLoad {
 
     import spark.implicits._
 
-
-
     // constants
     val in_path = s"data/in.csv" // args(0) - maprfs:///exthcp/tenant-54/fsmount/hpecp-agent.log 
-    val out_path = s"data/out.csv" // args(0) - maprfs:///exthcp/tenant-54/fsmount/hpecp-agent.log 
+    val out_path = s"data/out.csv" // args(1) - maprfs:///exthcp/tenant-54/fsmount/hpecp-agent.log 
     val db_url = "jdbc:sqlserver://localhost:1433;databaseName=master" // args(1)
-    val table = "dbo.sample_table"
-    val user = "sa"
-    val password = "Admin123"
+    val table = "dbo.sample_table" //
+    val user = "sa" //
+    val password = "Admin123" //
 
     val sampleDF = spark.read.format("csv")
       .option("header", "true")
@@ -55,6 +53,5 @@ object MssqlLoad {
       .option("password", password)
       .option("driver", "com.microsoft.sqlserver.jdbc.SQLServerDriver")
       .save()
-
   }
 }
