@@ -49,7 +49,7 @@ Set-up Steps:
 git clone https://github.com/DarianHarrison/spark-CZE
 ```
 
-2. (optional) On **any-machine** 
+2. (optional) On **any-machine** where you installed sbt 
 note: job should take about 2 - 5 mins to build
 ```
 sbt clean package assembly
