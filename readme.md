@@ -79,22 +79,17 @@ data/in.csv
 
 mkdir for app logs
 ```
-on the same data fabric image:
-copy the cybersecurity-assembly-1.0.0.jar that was generated in **any-machine** and the sample data into the data fabric
-```
-mkdir /mapr/mnt/hcp.mapr.cluster/apps/cybersecurity
-scp -r <user>@<host>:/path/to/ess-cybersecurity/shared_resources /mapr/mnt/hcp.mapr.cluster/apps/cybersecurity
-```
+
 
 4. Deployment
 
 Before deploying K8's applications, you need to modify each of the following files in 
 
-**path/to/ess-cybersecurity/kube/**
+**spark-CZE/kube/**
 
-* (optional) simple-train.yaml
-* df-dataingestion.yaml
-* simple-inference.yaml
+* 0.csv-to-csv.yamlaml
+* 1.csv-to-db.yaml
+* 2.db-to-csv.yaml
 
 fields to modify (lines with commens):
 
@@ -108,6 +103,6 @@ fields to modify (lines with commens):
 
 note: we have a pretrained model already on the data fabric, so this step can be skipped
 ```
-kubectl apply -f ess-cybersecurity/kube/simple-train.yaml
-kubectl logs -f pod/simple-train-driver -n <namespace>
+kubectl apply -f spark-CZE/kube/0.csv-to-csv.yaml
+kubectl logs -f pod/spark-csv-to-csv-driver -n <namespace>
 ```
