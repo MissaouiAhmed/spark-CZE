@@ -96,10 +96,9 @@ fields to modify (lines with commens):
 * name
 * namespace
 * spark.mapr.user.secret
-* spark.eventLog.dir
 * mainClass
 * mainApplicationFile
-* serviceAccount
+* arguments
 
 note: we have a pretrained model already on the data fabric, so this step can be skipped
 ```
