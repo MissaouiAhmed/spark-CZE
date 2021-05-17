@@ -7,8 +7,8 @@ logLevel := Level.Error
 trapExit := false
 compileOrder := CompileOrder.JavaThenScala
 
-val sparkVersion = "2.4.4"
-//val sparkVersion = "2.4.4.0-mapr-630"
+//val sparkVersion = "2.4.4"
+val sparkVersion = "2.4.4.0-mapr-630"
 
 lazy val root = (project in file(".")).
   settings(
