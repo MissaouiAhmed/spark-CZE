@@ -7,14 +7,14 @@ spec:
   #sparkConf:
     # Note: If you are executing the application as a K8 user that MapR can verify,
     #       you do not need to specify a spark.mapr.user.secret
-    #spark.mapr.user.secret: spark-user-secret
+    # spark.mapr.user.secret: spark-user-secret # for 52  mapr-user-secret-1037712515
     # Note: You do not need to specify a spark.eventLog.dir
     #       it will be auto-generated with the pattern "maprfs:///apps/spark/<namespace>"
     #spark.eventLog.dir: "maprfs:///apps/spark/sampletenant"
   type: Java
   sparkVersion: 2.4.4 # for 5.2 2.4.5
   mode: cluster
-  image: gcr.io/mapr-252711/spark-2.4.4:202009090453C # for 5.2 image: gcr.io/mapr-252711/spark-2.4.5:202010301117C
+  image: gcr.io/mapr-252711/spark-2.4.4:202009090453C # for 52 image: gcr.io/mapr-252711/spark-2.4.5:202010301117C
   imagePullPolicy: Always
   mainClass: com.cze.catharina.CsvToCsv # modify here
   mainApplicationFile: "maprfs:///exthcp/tenant-36/fsmount/generic-assembly-1.0.0.jar" # modify here
