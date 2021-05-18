@@ -16,13 +16,13 @@ spec:
   mode: cluster
   image: gcr.io/mapr-252711/spark-2.4.4:202009090453C
   imagePullPolicy: Always
-  mainClass: com.cze.catharina.MssqlQuery # modify here
+  mainClass: com.cze.catharina.MssqlQuery
   mainApplicationFile: "maprfs:///path/to/generic-assembly-1.0.0.jar" # modify here
   restartPolicy:
     type: Never
-  arguments:
-  - maprfs:///data/in.csv # in_path
-  - maprfs:///data/out.csv # modify here
+  arguments: # modify here
+  - maprfs:///exthcp/tenant-36/fsmount/in.csv # input path
+  - maprfs:///exthcp/tenant-36/fsmount/out.csv # output path
   - jdbc:sqlserver://localhost:1433;databaseName=master # connection String
   - dbo.sample_table # table
   - sa # user

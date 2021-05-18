@@ -16,12 +16,12 @@ spec:
   mode: cluster
   image: gcr.io/mapr-252711/spark-2.4.4:202009090453C # for 52 image: gcr.io/mapr-252711/spark-2.4.5:202010301117C
   imagePullPolicy: Always
-  mainClass: com.cze.catharina.CsvToCsv # modify here
+  mainClass: com.cze.catharina.CsvToCsv
   mainApplicationFile: "maprfs:///exthcp/tenant-36/fsmount/generic-assembly-1.0.0.jar" # modify here
   restartPolicy:
     type: Never
-  arguments:
-  - maprfs:///exthcp/tenant-36/fsmount/in.csv # modify here 
+  arguments: # modify here 
+  - maprfs:///exthcp/tenant-36/fsmount/in.csv # input path
   - maprfs:///exthcp/tenant-36/fsmount/out.csv # modify here    
   imagePullSecrets:
   - imagepull
