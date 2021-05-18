@@ -47,14 +47,8 @@ object MssqlQuery {
   		.load()
     jdbcDF.show() // show the raw query
 
-    // filter the data
-    val jdbcDF1 = jdbcDF
-      .filter($"Numeric" > 7)
-      .select("Numeric","Numeric-Suffix")
-    jdbcDF1.show()
-
-    //jdbcDF1.write.mode("overwrite").option("header", "true").csv(out_path) // distributed
-    jdbcDF1.coalesce(1).write.mode("overwrite").option("header", "true").csv(out_path) // single file
+    //jdbcDF.write.mode("overwrite").option("header", "true").csv(out_path) // distributed
+    jdbcDF.coalesce(1).write.mode("overwrite").option("header", "true").csv(out_path) // single file
 
   }
 }
