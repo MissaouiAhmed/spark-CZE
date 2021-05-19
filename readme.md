@@ -11,15 +11,13 @@ This project is aimed to show a simple 2 way ETL
 
 ## Prerequisites
 
-You need to configure at least the first 3 environments to run the demo
-
 a) HPECP 5.3 or K8s with Spark Operator installed
 
 b) (optional) DataFabric or External Storage Solution
 
-d) (optional) sbt, if we want to package the project, else we can just leverage the prebuilt .jar
+c) (optional) sbt, if we want to package the project, else we can just leverage the prebuilt .jar
 
-d.1) If you plan to build your jar artifacts, on any machine you can install sbt
+d) (optional) If you plan to build your jar artifacts, on any machine you can install sbt (scala build tool)
 ```
 curl https://bintray.com/sbt/rpm/rpm | sudo tee /etc/yum.repos.d/bintray-sbt-rpm.repo
 sudo yum install sbt -y
@@ -105,3 +103,5 @@ note: we have a pretrained model already on the data fabric, so this step can be
 kubectl apply -f spark-CZE/kube/0.csv-to-csv.yaml
 kubectl logs -f pod/spark-csv-to-csv-driver -n <namespace>
 ```
+
+
