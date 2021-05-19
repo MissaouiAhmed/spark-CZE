@@ -4,7 +4,7 @@
 
 ## Introduction
 
-This project is aimed to show a simple 2 way ETL 
+This project is aimed to show a simple 2 way ETL
 
 1) load data from csv file to MSSQL
 2) query MSSQL, filter and save to csv file
@@ -104,4 +104,6 @@ kubectl apply -f spark-CZE/kube/0.csv-to-csv.yaml
 kubectl logs -f pod/spark-csv-to-csv-driver -n <namespace>
 ```
 
-
+## 5. Further reading
+https://spark.apache.org/docs/latest/running-on-kubernetes.html
+https://github.com/GoogleCloudPlatform/spark-on-k8s-operator
