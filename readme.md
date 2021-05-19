@@ -105,5 +105,5 @@ kubectl logs -f pod/spark-csv-to-csv-driver -n <namespace>
 ```
 
 ## 5. Further reading
-https://spark.apache.org/docs/latest/running-on-kubernetes.html
-https://github.com/GoogleCloudPlatform/spark-on-k8s-operator
+* https://spark.apache.org/docs/latest/running-on-kubernetes.html
+* https://github.com/GoogleCloudPlatform/spark-on-k8s-operator
